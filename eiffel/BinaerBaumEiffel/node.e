@@ -17,7 +17,7 @@ create
 feature --Node Initialisation
 	parent: detachable Node assign setParent
 
-feature
+feature 
 
 	setParent (P :detachable Node) --Sets the parent
 	do

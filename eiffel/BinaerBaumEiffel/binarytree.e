@@ -24,7 +24,7 @@ feature
 feature
 	add (i : INTEGER)  --Add Node to BinaryTree i is the Value of the Node
 	require
-		has(i) = false
+		not has(i)
 	Local
 		nNode : NODE
 	do
@@ -35,7 +35,7 @@ feature
 			root := nNode
 		end
 		ensure
-			has(i) = true
+			has(i)
 	end
 
 
@@ -129,11 +129,11 @@ feature
 feature
 	del(value : INTEGER) : BOOLEAN  --Starts the recursive method derRec to delete the Node with value
 	require
-		has(value) = true
+		has(value)
  	do
  		Result := delRec(root,value,Void,FALSE)
  		ensure
- 			has(value) = false
+ 			 not has(value)
  	end
 
  	delRec(k:detachable NODE; s: INTEGER; father : detachable NODE; amleftFromFather : BOOLEAN) : BOOLEAN
