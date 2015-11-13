@@ -18,5 +18,22 @@ feature
 		create root.make(v)
 	end
 
-feature 
+feature
+	add (i : INTEGER)
+	do
+
+	end
+
+	remove(i :INTEGER)
+	do
+
+	end
+
+	insert(i:INTEGER)
+	do
+		
+	end
+
+
 end
+
