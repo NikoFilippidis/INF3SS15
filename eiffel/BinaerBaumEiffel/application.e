@@ -19,6 +19,7 @@ feature {NONE} -- Initialization
 		do
 			create b.make(2)
 
+
 		end
 
 feature
