@@ -17,10 +17,11 @@ feature {NONE} -- Initialization
 	make
 			-- Run application.
 		do
-			create root.make(3)
-			print(root.getvalue)
+			create b.make(2)
+
 		end
 
 feature
-	root : NODE
+	b : BINARYTREE
+
 end

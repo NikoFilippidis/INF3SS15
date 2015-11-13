@@ -16,10 +16,10 @@ feature --Node Initialisation
 	parent: detachable Node assign setParent
 
 
-feature 
+feature
 	make(v: INTEGER)  -- Konstruktor
 		do
-			value=v
+			value:=v
 			ensure
 				value = v
 		end
@@ -47,21 +47,28 @@ feature --Setters
 feature --Getters
 	getLeft:detachable NODE
 	do
-		Result := left
+		if left /= Void then
+			Result := left
+		end
+
 		ensure
 			Result = left
 	end
 
 	getRight:detachable NODE
 	do
-		Result := right
+		if left/=right then
+			Result := right
+		end
 		ensure
 			Result = right
 	end
 
 	getParent: detachable NODE
 	do
-		Result:=parent
+		if parent /= Void then
+			Result:=parent
+		end
 		ensure
 			Result = parent
 	end
