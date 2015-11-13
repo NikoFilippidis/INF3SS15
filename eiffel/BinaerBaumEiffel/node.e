@@ -11,7 +11,7 @@ feature
 	left : detachable Node assign setLeft
 	right: detachable Node assign setRight
 	parent: detachable Node assign setParent
-	value: detachable INTEGER assign setValue
+	value: INTEGER assign setValue
 
 	make(v: INTEGER)  -- Konstruktor
 		do

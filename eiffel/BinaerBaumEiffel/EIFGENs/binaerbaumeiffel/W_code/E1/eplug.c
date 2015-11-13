@@ -115,7 +115,7 @@ void egc_init_plug (void)
 	egc_forg_table = egc_forg_table_init;
 
 	egc_system_name = "binaerbaumeiffel";
-	egc_system_location = "C:\\Users\\Niko\\Documents\\Eiffel User Files\\15.08\\projects\\BinaerBaumEiffel\\EIFGENs\\binaerbaumeiffel\\W_code";
+	egc_system_location = "C:\\Users\\Niko\\Documents\\GitRepo\\eiffel\\BinaerBaumEiffel\\EIFGENs\\binaerbaumeiffel\\W_code";
 	egc_compiler_tag = 38;
 	egc_project_version = 1447332869;
 	egc_has_old_special_semantic = 0;
