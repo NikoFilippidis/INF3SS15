@@ -13,11 +13,14 @@ create
 	make
 
 feature {NONE} -- Initialization
-	root : NODE
+
 	make
 			-- Run application.
 		do
-			root.make(2)
+			create root.make(3)
+			print(root.getvalue)
 		end
 
+feature
+	root : NODE
 end

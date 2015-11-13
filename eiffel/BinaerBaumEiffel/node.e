@@ -6,26 +6,36 @@ note
 
 class
 	NODE
+create
+	make
 
-feature
+feature --Node Initialisation
+	value: INTEGER
 	left : detachable Node assign setLeft
 	right: detachable Node assign setRight
 	parent: detachable Node assign setParent
-	value: INTEGER assign setValue
 
+
+feature 
 	make(v: INTEGER)  -- Konstruktor
 		do
-			setValue(v)
+			value=v
+			ensure
+				value = v
 		end
-
+feature --Setters
 	setLeft (L : detachable Node)
 	do
-		left:=left
+		left:=L
+		ensure
+			left= L
 	end
 
 	setRight (R : detachable Node)
 	do
 		right:=R
+		ensure
+			right = R
 	end
 
 	setParent (P : detachable Node)
@@ -33,24 +43,31 @@ feature
 		parent:=P
 	end
 
-	getLeft:NODE
+
+feature --Getters
+	getLeft:detachable NODE
 	do
-		check attached left as L then
-				Result := L
-			end
+		Result := left
+		ensure
+			Result = left
 	end
 
-	getRight:NODE
+	getRight:detachable NODE
 	do
-			check attached right as R then
-				Result := R
-			end
+		Result := right
+		ensure
+			Result = right
 	end
 
-	getParent:NODE
+	getParent: detachable NODE
 	do
-		check attached parent as P then
-				Result := p
-			end
+		Result:=parent
+		ensure
+			Result = parent
+	end
+
+	getValue: INTEGER
+	do
+		Result:=value
 	end
 end
