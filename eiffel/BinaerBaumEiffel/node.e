@@ -35,16 +35,22 @@ feature
 
 	getLeft:NODE
 	do
-		Result := left
+		check attached left as L then
+				Result := L
+			end
 	end
 
 	getRight:NODE
 	do
-		Result := right
+			check attached right as R then
+				Result := R
+			end
 	end
 
 	getParent:NODE
 	do
-		Result := parent
+		check attached parent as P then
+				Result := p
+			end
 	end
 end
