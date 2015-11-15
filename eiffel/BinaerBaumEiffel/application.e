@@ -18,7 +18,8 @@ feature {NONE} -- Initialization
 			-- Run application.
 		do
 			create b.make(2)
-
+			b.add (3)
+			b.add (8)
 
 		end
 

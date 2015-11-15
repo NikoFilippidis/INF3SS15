@@ -10,7 +10,7 @@ create
 	make
 
 feature
-	root:detachable NODE
+	root: NODE
 
 feature
 	make(v:INTEGER)
@@ -21,7 +21,7 @@ feature
 feature
 	add (i : INTEGER)
 	Local
-		nNode :detachable NODE
+		nNode : NODE
 	do
 		create	nNode.make(i)
 		if root /= Void then
@@ -41,21 +41,26 @@ feature
 		--	k:=nNode
 		--end
 		if root = Void then
-			root := k
-		else
-			if s < k.getvalue then
-				if k.getleft /= Void then
-					addrekursive (k.getleft, s)
-				else
-					k.setleft (nNode)
-				end
+			if k /= Void then
+				root := k
 			end
 
-			if s > k.getvalue then
-				if k.getRight /= Void then
-					addrekursive (k.getRight, s)
-				else
-					k.setRight(nNode)
+		else
+			if k/= Void then
+				if s < k.getvalue then
+					if k.getleft /= Void then
+						addrekursive (k.getleft, s)
+					else
+						k.setleft (nNode)
+					end
+				end
+
+				if s > k.getvalue then
+					if k.getRight /= Void then
+						addrekursive (k.getRight, s)
+					else
+						k.setRight(nNode)
+					end
 				end
 			end
 		end
@@ -67,7 +72,7 @@ feature
 
 	end
 
-	insert(i:INTEGER)
+	has(i:INTEGER)
 	do
 
 	end
