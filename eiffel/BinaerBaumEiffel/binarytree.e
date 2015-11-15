@@ -37,15 +37,12 @@ feature
 		nNode : NODE
 	do
 		create nNode.make (s)
-		--if k = Void then
-		--	k:=nNode
-		--end
-		if root = Void then
-			if k /= Void then
-				root := k
-			end
+--		if root = Void then
+--			if k /= Void then
+--				root := k
+--			end
 
-		else
+	--	else
 			if k/= Void then
 				if s < k.getvalue then
 					if k.getleft /= Void then
@@ -63,18 +60,27 @@ feature
 					end
 				end
 			end
-		end
-	end
-
-
-	remove(j :INTEGER)
-	do
-
+	--	end
 	end
 
 	has(i:INTEGER)
 	do
+		hasRek (i, root)
+	end
 
+	hasRek(i:INTEGER; r:detachable NODE)
+	do
+		if r/= Void then
+			if i = r.getvalue then
+					print(i)
+					print("Found")
+			end
+			if i < r.getvalue then
+				hasrek (i, r.getleft)
+			else
+				hasrek (i, r.getright)
+			end
+		end
 	end
 
 
