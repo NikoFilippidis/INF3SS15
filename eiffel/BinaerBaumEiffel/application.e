@@ -18,6 +18,7 @@ feature {NONE} -- Initialization
 			-- Run application.
 		do
 			create b.make(2)
+			print("hallo")
 
 		end
 

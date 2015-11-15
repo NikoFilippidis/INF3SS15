@@ -2,13 +2,13 @@ INCLUDE_PATH =
 SHELL = \bin\sh
 CC = cl
 CPP = cl
-CFLAGS = -Od -MT -w -nologo -D_WIN32_WINNT=0x0500 -DWINVER=0x0500 -D_CRT_SECURE_NO_DEPRECATE -D_UNICODE -DUNICODE   -DEIF_IEEE_BEHAVIOR -DWORKBENCH -I"C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\spec\win64\include" -I. $(INCLUDE_PATH)
-CPPFLAGS = -Od -MT -w -nologo -D_WIN32_WINNT=0x0500 -DWINVER=0x0500 -D_CRT_SECURE_NO_DEPRECATE -D_UNICODE -DUNICODE   -DWORKBENCH -I"C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\spec\win64\include" -I. $(INCLUDE_PATH)
+CFLAGS = -Od -MT -w -nologo -D_WIN32_WINNT=0x0500 -DWINVER=0x0500 -D_CRT_SECURE_NO_DEPRECATE -D_UNICODE -DUNICODE   -DEIF_IEEE_BEHAVIOR -DWORKBENCH -I"C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\spec\win64\include" -I. $(INCLUDE_PATH)
+CPPFLAGS = -Od -MT -w -nologo -D_WIN32_WINNT=0x0500 -DWINVER=0x0500 -D_CRT_SECURE_NO_DEPRECATE -D_UNICODE -DUNICODE   -DWORKBENCH -I"C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\spec\win64\include" -I. $(INCLUDE_PATH)
 LDFLAGS = -STACK:5000000 -NODEFAULTLIB:libc
 CCLDFLAGS = -STACK:5000000 -NODEFAULTLIB:libc  -SUBSYSTEM:CONSOLE
 LDSHAREDFLAGS =  -dll -incremental:no -NODEFAULTLIB:libc
-EIFLIB = "C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\spec\win64\lib\msc\wkbench.lib"
-EIFTEMPLATES = C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\config\win64\templates
+EIFLIB = "C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\spec\win64\lib\msc\wkbench.lib"
+EIFTEMPLATES = C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\config\win64\templates
 LIBS = 
 MAKE = nmake -s -nologo
 AR = 
@@ -20,7 +20,7 @@ RANLIB = echo
 RM = del
 FILE_EXIST = if exist
 RMDIR = rd
-X2C = "C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\spec\win64\bin\x2c.exe"
+X2C = "C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\spec\win64\bin\x2c.exe"
 SHAREDLINK = link
 SHAREDLIBS = USER32.lib WS2_32.lib ADVAPI32.lib GDI32.lib SHELL32.lib MSIMG32.lib \
 	COMDLG32.lib UUID.lib OLE32.lib OLEAUT32.lib COMCTL32.lib MPR.LIB SHLWAPI.LIB WINSPOOL.LIB 
@@ -118,7 +118,7 @@ C_OBJECTS = C1\Cobj1.lib
 
 EOBJECTS = E1\eparents.obj  E1\einit.obj  E1\ececil.obj  E1\evisib.obj  E1\enames.obj  E1\eskelet.obj  E1\eplug.obj  E1\ecall.obj  E1\efrozen.obj  E1\epattern.obj  E1\eoption.obj  
 
-PRECOMP_OBJECTS= "c:\users\niko\documents\eiffel user files\15.08\precomp\spec\win64\EIFGENs\base-safe\W_code\msc\precomp.lib"
+PRECOMP_OBJECTS= "c:\users\zipfel\documents\eiffel user files\14.05\precomp\spec\win64\EIFGENs\base-safe\W_code\msc\precomp.lib"
 
 
 binaerbaumeiffel.exe: binaerbaumeiffel.lnk binaerbaumeiffel.res
@@ -126,7 +126,7 @@ binaerbaumeiffel.exe: binaerbaumeiffel.lnk binaerbaumeiffel.res
 	link @binaerbaumeiffel.lnk
 
 ..\..\..\binaerbaumeiffel.rc:
-	if not exist ..\..\..\binaerbaumeiffel.rc $(MV) "C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\config\win64\msc\eiffel.rc" ..\..\..\binaerbaumeiffel.rc
+	if not exist ..\..\..\binaerbaumeiffel.rc $(MV) "C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\config\win64\msc\eiffel.rc" ..\..\..\binaerbaumeiffel.rc
 
 binaerbaumeiffel.res: ..\..\..\binaerbaumeiffel.rc Makefile
 	rc -r -fobinaerbaumeiffel.res ..\..\..\binaerbaumeiffel.rc
@@ -170,7 +170,7 @@ DEF_FILE= c_binaerbaumeiffel.def
 c_binaerbaumeiffel.def: 
 	if exist $@ $(RM) $@
 	echo LIBRARY libbinaerbaumeiffel.dll > $@
-	type "C:\Program Files\Eiffel Software\EiffelStudio 15.08 GPL\studio\config\win64\templates\cecil.def"  >> $@
+	type "C:\Program Files\Eiffel Software\EiffelStudio 14.05 GPL\studio\config\win64\templates\cecil.def"  >> $@
 
 SHARED_CECIL_OBJECT = $(OBJECTS) \
 		E1/emain.obj

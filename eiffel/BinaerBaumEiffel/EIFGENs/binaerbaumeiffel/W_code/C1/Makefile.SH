@@ -55,7 +55,7 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 
 OBJECTS = big_file_C1_c.obj 
 
-OLDOBJECTS =  ap861.o ap861d.o 
+OLDOBJECTS =  ap862.o ap862d.o bi861.o bi861d.o no860.o no860d.o 
 
 all: Cobj1.o
 

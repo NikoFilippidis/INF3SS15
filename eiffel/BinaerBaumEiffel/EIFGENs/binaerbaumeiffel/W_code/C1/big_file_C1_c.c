@@ -1,2 +1,6 @@
-#include "ap861.c"
-#include "ap861d.c"
+#include "ap862.c"
+#include "ap862d.c"
+#include "bi861.c"
+#include "bi861d.c"
+#include "no860.c"
+#include "no860d.c"
