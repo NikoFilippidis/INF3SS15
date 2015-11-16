@@ -24,21 +24,21 @@ feature
 				value = v
 		end
 feature --Setters
-	setLeft (L : detachable Node)
+	setLeft (L :detachable Node)
 	do
 		left:=L
 		ensure
 			left= L
 	end
 
-	setRight (R : detachable Node)
+	setRight (R :detachable Node)
 	do
 		right:=R
 		ensure
 			right = R
 	end
 
-	setParent (P : detachable Node)
+	setParent (P :detachable Node)
 	do
 		parent:=P
 	end
@@ -47,27 +47,26 @@ feature --Setters
 feature --Getters
 	getLeft:detachable NODE
 	do
-		if left /= Void then
-			Result := left
+		if attached left as L then
+			Result := L
 		end
-
 		ensure
 			Result = left
 	end
 
 	getRight:detachable NODE
 	do
-		if left/=right then
-			Result := right
+		if attached right as R then
+			Result := R
 		end
 		ensure
 			Result = right
 	end
 
-	getParent: detachable NODE
+	getParent:detachable NODE
 	do
-		if parent /= Void then
-			Result:=parent
+		if attached parent as P then
+			Result:=P
 		end
 		ensure
 			Result = parent
@@ -76,5 +75,7 @@ feature --Getters
 	getValue: INTEGER
 	do
 		Result:=value
+		ensure
+			Result = value
 	end
 end
