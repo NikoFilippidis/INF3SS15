@@ -19840,6 +19840,82 @@ static const int32 cn_attr860 [] =
 4861,
 };
 
+extern const char *names861[];
+static const uint32 types861 [] =
+{
+SK_REF,
+SK_REF,
+SK_REF,
+SK_INT32,
+};
+
+static const uint16 attr_flags861 [] =
+{0,0,0,0,};
+
+static const EIF_TYPE_INDEX g_atype861_0 [] = {860,0xFFFF};
+static const EIF_TYPE_INDEX g_atype861_1 [] = {860,0xFFFF};
+static const EIF_TYPE_INDEX g_atype861_2 [] = {860,0xFFFF};
+static const EIF_TYPE_INDEX g_atype861_3 [] = {206,0xFFFF};
+
+static const EIF_TYPE_INDEX *gtypes861 [] = {
+g_atype861_0,
+g_atype861_1,
+g_atype861_2,
+g_atype861_3,
+};
+
+static const int32 cn_attr861 [] =
+{
+4899,
+4900,
+4901,
+4898,
+};
+
+extern const char *names862[];
+static const uint32 types862 [] =
+{
+SK_REF,
+SK_REF,
+};
+
+static const uint16 attr_flags862 [] =
+{0,0,};
+
+static const EIF_TYPE_INDEX g_atype862_0 [] = {860,0xFFFF};
+static const EIF_TYPE_INDEX g_atype862_1 [] = {0xFF01,220,0xFFFF};
+
+static const EIF_TYPE_INDEX *gtypes862 [] = {
+g_atype862_0,
+g_atype862_1,
+};
+
+static const int32 cn_attr862 [] =
+{
+4910,
+4911,
+};
+
+extern const char *names863[];
+static const uint32 types863 [] =
+{
+SK_REF,
+};
+
+static const uint16 attr_flags863 [] =
+{0,};
+
+static const EIF_TYPE_INDEX g_atype863_0 [] = {0xFF01,861,0xFFFF};
+
+static const EIF_TYPE_INDEX *gtypes863 [] = {
+g_atype863_0,
+};
+
+static const int32 cn_attr863 [] =
+{
+4919,
+};
+
 const struct cnode egc_fsystem_init[] = {
 {
 	(long) 0,
@@ -34462,17 +34538,51 @@ const struct cnode egc_fsystem_init[] = {
 	NULL
 },
 {
-	(long) 0,
-	(long) 0,
-	"APPLICATION",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	(long) 4,
+	(long) 4,
+	"NODE",
+	names861,
+	types861,
+	attr_flags861,
+	gtypes861,
 	(uint16) 0,
-	(int32 *) 0,
-	0,
-	0L,
+	cn_attr861,
+	32,
+	3L,
+	(int32) 0,
+	{(int32) 0, (int) 0, (char **) 0, (char *) 0}
+	,
+	NULL
+},
+{
+	(long) 2,
+	(long) 2,
+	"BINARYTREE",
+	names862,
+	types862,
+	attr_flags862,
+	gtypes862,
+	(uint16) 0,
+	cn_attr862,
+	16,
+	2L,
+	(int32) 0,
+	{(int32) 0, (int) 0, (char **) 0, (char *) 0}
+	,
+	NULL
+},
+{
+	(long) 1,
+	(long) 1,
+	"APPLICATION",
+	names863,
+	types863,
+	attr_flags863,
+	gtypes863,
+	(uint16) 0,
+	cn_attr863,
+	8,
+	1L,
 	(int32) 0,
 	{(int32) 0, (int) 0, (char **) 0, (char *) 0}
 	,

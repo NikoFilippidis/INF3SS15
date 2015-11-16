@@ -4963,6 +4963,25 @@ char *names860 [] =
 "type",
 };
 
+char *names861 [] =
+{
+"left",
+"right",
+"parent",
+"value",
+};
+
+char *names862 [] =
+{
+"root",
+"ausg",
+};
+
+char *names863 [] =
+{
+"b",
+};
+
 
 
 #ifdef __cplusplus

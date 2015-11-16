@@ -10,9 +10,11 @@ create
 	make
 
 feature
-	root: NODE
+	root: detachable NODE
 	ausg : STRING
+
 feature
+
 	make(v:INTEGER)
 	do
 		create root.make(v)
@@ -32,7 +34,8 @@ feature
 		end
 	end
 
-	addRekursive(k:detachable NODE; s:INTEGER)
+
+	addRekursive(k : detachable NODE; s:INTEGER)
 	Local
 		nNode : NODE
 	do
@@ -94,6 +97,7 @@ feature
 	has(i:INTEGER)
 	do
 		hasRek (i, root)
+
 	end
 
 	hasRek(i:INTEGER; r:detachable NODE)
@@ -101,7 +105,7 @@ feature
 		found : BOOLEAN
 	do
 		found := FALSE
-		if r/= Void then
+		if r /= Void then
 			if i = r.getvalue then
 				if found = FALSE then
 					print(i)
@@ -126,6 +130,7 @@ feature
 			end
 
 		end
+
 	end
 end
 

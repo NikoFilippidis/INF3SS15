@@ -12655,7 +12655,29 @@ extern void F860_6873();
 extern void F860_6874();
 extern EIF_REFERENCE F860_6875();
 extern EIF_BOOLEAN F860_6876();
-extern void F861_6968();
+extern void F861_6975();
+extern EIF_REFERENCE F861_6976();
+extern EIF_REFERENCE F861_6977();
+extern EIF_REFERENCE F861_6978();
+extern EIF_INTEGER_32 F861_6979();
+extern EIF_INTEGER_32 F861_6968();
+extern EIF_REFERENCE F861_6969();
+extern EIF_REFERENCE F861_6970();
+extern EIF_REFERENCE F861_6971();
+extern void F861_6972();
+extern void F861_6973();
+extern void F861_6974();
+extern EIF_REFERENCE F862_6980();
+extern EIF_REFERENCE F862_6981();
+extern void F862_6982();
+extern void F862_6983();
+extern void F862_6984();
+extern void F862_6985();
+extern void F862_6986();
+extern void F862_6987();
+extern void F862_6988();
+extern EIF_REFERENCE F863_6989();
+extern void F863_6990();
 
 #ifdef __cplusplus
 }
@@ -25316,7 +25338,29 @@ fnptr egc_frozen_init[] = {
 (fnptr) F860_6874,
 (fnptr) F860_6875,
 (fnptr) F860_6876,
+(fnptr) F861_6975,
+(fnptr) F861_6976,
+(fnptr) F861_6977,
+(fnptr) F861_6978,
+(fnptr) F861_6979,
 (fnptr) F861_6968,
+(fnptr) F861_6969,
+(fnptr) F861_6970,
+(fnptr) F861_6971,
+(fnptr) F861_6972,
+(fnptr) F861_6973,
+(fnptr) F861_6974,
+(fnptr) F862_6980,
+(fnptr) F862_6981,
+(fnptr) F862_6982,
+(fnptr) F862_6983,
+(fnptr) F862_6984,
+(fnptr) F862_6985,
+(fnptr) F862_6986,
+(fnptr) F862_6987,
+(fnptr) F862_6988,
+(fnptr) F863_6989,
+(fnptr) F863_6990,
 };
 
 int egc_fpatidtab_init[] = {
@@ -37969,6 +38013,28 @@ int egc_fpatidtab_init[] = {
 7,
 286,
 15,
+3,
+0,
+0,
+0,
+13,
+13,
+0,
+0,
+0,
+25,
+3,
+3,
+0,
+0,
+25,
+25,
+121,
+5,
+3,
+25,
+112,
+0,
 5,
 };
 

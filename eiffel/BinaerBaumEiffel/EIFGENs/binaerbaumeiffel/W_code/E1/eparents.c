@@ -3444,11 +3444,19 @@ static struct eif_par_types par858 = {858, ptf858, (uint16) 1, (uint16) 1, (char
 static EIF_TYPE_INDEX ptf859[] = {236,0xFFFF};
 static struct eif_par_types par859 = {859, ptf859, (uint16) 1, (uint16) 1, (char) 0};
 
-/* APPLICATION */
-static EIF_TYPE_INDEX ptf860[] = {145,0xFFFF};
+/* NODE */
+static EIF_TYPE_INDEX ptf860[] = {0,0xFFFF};
 static struct eif_par_types par860 = {860, ptf860, (uint16) 1, (uint16) 0, (char) 0};
 
-int egc_partab_size_init = 860;
+/* BINARYTREE */
+static EIF_TYPE_INDEX ptf861[] = {0,0xFFFF};
+static struct eif_par_types par861 = {861, ptf861, (uint16) 1, (uint16) 0, (char) 0};
+
+/* APPLICATION */
+static EIF_TYPE_INDEX ptf862[] = {145,0xFFFF};
+static struct eif_par_types par862 = {862, ptf862, (uint16) 1, (uint16) 0, (char) 0};
+
+int egc_partab_size_init = 862;
 struct eif_par_types *egc_partab_init[] = {
 &par0,
 &par1,
@@ -4311,6 +4319,8 @@ struct eif_par_types *egc_partab_init[] = {
 &par858,
 &par859,
 &par860,
+&par861,
+&par862,
 NULL};
 
 #ifdef __cplusplus

@@ -41,7 +41,7 @@ SYSTEM_IN_DYNAMIC_LIB = binaerbaumeiffel.dll
 
 OBJECTS = big_file_C1_c.obj 
 
-OLDOBJECTS =  ap861.obj ap861d.obj 
+OLDOBJECTS =  ap863.obj ap863d.obj bi862.obj bi862d.obj no861.obj no861d.obj 
 
 all::  Cobj1.lib
 

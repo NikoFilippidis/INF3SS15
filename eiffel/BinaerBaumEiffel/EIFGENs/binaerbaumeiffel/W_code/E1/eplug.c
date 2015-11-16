@@ -120,7 +120,7 @@ void egc_init_plug (void)
 	egc_project_version = 1447332869;
 	egc_has_old_special_semantic = 0;
 	egc_has_ieee_semantic = 1;
-	scount = 861;
+	scount = 863;
 
 	egc_rcount = 1;
 	egc_ridx = 0;
@@ -130,7 +130,7 @@ void egc_init_plug (void)
 	egc_rcarg = (int32 *) eif_malloc (sizeof(int32)*egc_rcount);
 	egc_rlist[0] = "APPLICATION.make";
 	egc_rcdt[0] = 0;
-	egc_rcrid[0] = 4898;
+	egc_rcrid[0] = 4920;
 	egc_rcarg[0] = 0;
 	
 	
@@ -143,7 +143,7 @@ void egc_init_plug (void)
 void egc_rcdt_init (void)
 {
 	if (egc_rcdt[0] == 0) {
-		egc_rcdt[0] = 860; /* APPLICATION */
+		egc_rcdt[0] = 862; /* APPLICATION */
 	}
 }
 
