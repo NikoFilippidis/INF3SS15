@@ -11,11 +11,12 @@ create
 
 feature
 	root: NODE
-
+	ausg : STRING
 feature
 	make(v:INTEGER)
 	do
 		create root.make(v)
+		ausg := ""
 	end
 
 feature
@@ -23,20 +24,19 @@ feature
 	Local
 		nNode : NODE
 	do
-		create	nNode.make(i)
+		create nNode.make (i)
 		if root /= Void then
-			root := nNode
+			addRekursive(root,i)
 		else
-			nNode := root
+			root := nNode
 		end
-		addRekursive(nNode,i)
 	end
 
 	addRekursive(k:detachable NODE; s:INTEGER)
 	Local
 		nNode : NODE
 	do
-		create nNode.make (s)
+
 --		if root = Void then
 --			if k /= Void then
 --				root := k
@@ -44,24 +44,52 @@ feature
 
 	--	else
 			if k/= Void then
-				if s < k.getvalue then
-					if k.getleft /= Void then
-						addrekursive (k.getleft, s)
-					else
+				if s <= k.getvalue then
+					if k.getleft = Void then
+						create nNode.make (s)
 						k.setleft (nNode)
+						nNode.setparent (k)
+					else
+						addrekursive (k.getleft, s)
 					end
 				end
 
-				if s > k.getvalue then
-					if k.getRight /= Void then
-						addrekursive (k.getRight, s)
+				if s >= k.getvalue then
+					if k.getRight = Void then
+						create nNode.make (s)
+						k.setright (nNode)
+						nNode.setparent (k)
 					else
-						k.setRight(nNode)
+						addrekursive (k.getRight, s)
 					end
 				end
 			end
 	--	end
 	end
+
+
+	inOrder()
+	do
+		if root /= Void then
+			inOrderRec(root)
+		end
+
+		print(ausg)
+	end
+
+	inOrderRec (n:detachable NODE)
+		do
+			if n /= Void then
+				if n.getleft /= Void then
+					inOrderRec (n.getleft)
+				end
+				ausg := ausg + n.getvalue.out + " "
+				if n.getright /= Void then
+					inOrderRec (n.getright)
+				end
+			end
+		end
+
 
 	has(i:INTEGER)
 	do
@@ -69,20 +97,35 @@ feature
 	end
 
 	hasRek(i:INTEGER; r:detachable NODE)
+	Local
+		found : BOOLEAN
 	do
+		found := FALSE
 		if r/= Void then
 			if i = r.getvalue then
+				if found = FALSE then
 					print(i)
-					print("Found")
+					print(" Found")
+					io.new_line
+					found:=TRUE
+				end
 			end
-			if i < r.getvalue then
-				hasrek (i, r.getleft)
+			if i > r.getvalue and r.getright /= Void then
+				hasRek (i, r.getright)
 			else
-				hasrek (i, r.getright)
+				if i < r.getvalue and r.getleft /= Void then
+				hasRek (i, r.getleft)
+				else
+					if found = FALSE then
+						io.putint (i)
+						print(" Not Found")
+						io.new_line
+						found:=TRUE
+					end
+				end
 			end
+
 		end
 	end
-
-
 end
 
