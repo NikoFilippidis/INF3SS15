@@ -34,8 +34,9 @@ feature {NONE} -- Initialization
 			b.inorder
 			io.put_new_line
 
-		
-			print(b.del (5))
+			print(b.has (10))
+			print(b.has (112))
+			--print(b.del (5))
 			io.put_new_line
 
 			b.inorder

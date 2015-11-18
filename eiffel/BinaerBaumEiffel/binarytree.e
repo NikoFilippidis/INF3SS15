@@ -32,6 +32,8 @@ feature
 		else
 			root := nNode
 		end
+		ensure
+			--has (i) = TRUE
 	end
 
 
@@ -88,38 +90,28 @@ feature
 		end
 
 
-	has(i:INTEGER)
+	has(i:INTEGER) : BOOLEAN
 	do
-		hasRek (i, root)
+		Result:=hasRek (i, root)
 	end
 
-	hasRek(i:INTEGER; r:detachable NODE)
+	hasRek(i:INTEGER; r:detachable NODE) : BOOLEAN
 	Local
 		found : BOOLEAN
 	do
 		found := FALSE
 		if r /= Void then
-			if i = r.getvalue and found = FALSE then
-					print(i)
-					print(" Found")
-					io.new_line
-					found:=TRUE
+			if i = r.getvalue then
+				found:=TRUE
 			end
 			if i > r.getvalue and r.getright /= Void then
-				hasRek (i, r.getright)
-			else
-				if i < r.getvalue and r.getleft /= Void then
-				hasRek (i, r.getleft)
-				else
-					if found = FALSE then
-						io.putint (i)
-						print(" Not Found")
-						io.new_line
-						found:=TRUE
-					end
+				Result :=hasRek (i, r.getright)
+			else if i < r.getvalue and r.getleft /= Void then
+				Result :=hasRek (i, r.getleft)
 				end
 			end
 		end
+		Result:=found
 	end
 
 	del(value : INTEGER) : BOOLEAN

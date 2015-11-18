@@ -10,7 +10,7 @@ class
 create
 	make
 
-feature --Node Initialisation
+feature --Wurzel Initialisation
 	value: INTEGER
 	left : detachable Node assign setLeft
 	right: detachable Node assign setRight
@@ -42,6 +42,7 @@ feature --Setters
 	do
 		value := val
 	end
+
 feature --Getters
 	getLeft:detachable NODE
 	do
