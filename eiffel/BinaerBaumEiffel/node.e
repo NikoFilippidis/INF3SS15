@@ -43,7 +43,10 @@ feature --Setters
 		parent:=P
 	end
 
-
+	setValue (val : INTEGER)
+	do
+		value := val
+	end
 feature --Getters
 	getLeft:detachable NODE
 	do
