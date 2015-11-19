@@ -15,9 +15,7 @@ create
 feature
 	b : BINARYTREE
 
-feature {NONE} -- Initialization
-
-
+feature {NONE}
 	make
 		do
 			create b.make(10)
@@ -32,14 +30,10 @@ feature {NONE} -- Initialization
 
 
 			b.inorder
+			print(b.del (10))
+			print(b.del (7))
+			print(b.del (5))
 			io.put_new_line
-
-			print(b.has (10))
-			print(b.has (112))
-			--print(b.del (5))
-			io.put_new_line
-
 			b.inorder
-
 		end
 end

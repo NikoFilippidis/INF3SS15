@@ -17,34 +17,34 @@ feature --Wurzel Initialisation
 
 
 feature
-	make(v: INTEGER)  -- Konstruktor
+	make(v: INTEGER)  -- Construktor
 		do
 			value:=v
 			ensure
 				value = v
 		end
 feature --Setters
-	setLeft (L :detachable Node)
+	setLeft (L :detachable Node) --Sets the left Node
 	do
 		left:=L
 		ensure
 			left= L
 	end
 
-	setRight (R :detachable Node)
+	setRight (R :detachable Node) --Sets the right Node
 	do
 		right:=R
 		ensure
 			right = R
 	end
 
-	setValue (val : INTEGER)
+	setValue (val : INTEGER) --Sets the value
 	do
 		value := val
 	end
 
 feature --Getters
-	getLeft:detachable NODE
+	getLeft:detachable NODE  --Returns the left Node
 	do
 		if attached left as L then
 			Result := L
@@ -53,7 +53,7 @@ feature --Getters
 			Result = left
 	end
 
-	getRight:detachable NODE
+	getRight:detachable NODE	--Returns the right Node
 	do
 		if attached right as R then
 			Result := R
@@ -62,12 +62,10 @@ feature --Getters
 			Result = right
 	end
 
-	getValue: INTEGER
+	getValue: INTEGER		----Returns the value
 	do
 		Result:=value
 		ensure
 			Result = value
 	end
-
-
 end

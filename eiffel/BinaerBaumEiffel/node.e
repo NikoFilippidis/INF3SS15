@@ -19,13 +19,13 @@ feature --Node Initialisation
 
 feature
 
-	setParent (P :detachable Node)
+	setParent (P :detachable Node) --Sets the parent
 	do
 		parent:=P
 	end
 
 feature
-	getParent:detachable NODE
+	getParent:detachable NODE	-- Returns parent Node
 	do
 		if attached parent as P then
 			Result:=P

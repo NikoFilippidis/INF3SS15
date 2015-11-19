@@ -22,7 +22,9 @@ feature
 	end
 
 feature
-	add (i : INTEGER)
+	add (i : INTEGER)  --Add Node to BinaryTree i is the Value of the Node
+	require
+		has(i) = false
 	Local
 		nNode : NODE
 	do
@@ -33,11 +35,13 @@ feature
 			root := nNode
 		end
 		ensure
-			--has (i) = TRUE
+			has(i) = true
 	end
 
 
-	addRekursive(k : detachable NODE; s:INTEGER)
+	addRekursive(k : detachable NODE; s:INTEGER) -- Recursive arranging into the existing BinaryTree
+	require
+		k /= void
 	Local
 		nNode : NODE
 	do
@@ -65,7 +69,9 @@ feature
 	end
 
 
-	inOrder()
+	inOrder   -- Prints the BinaryTree inOrder from small value to big
+	require
+		root /= void
 	do
 		if root /= Void then
 			inOrderRec(root)
@@ -76,13 +82,13 @@ feature
 		io.put_new_line
 	end
 
-	inOrderRec (n:detachable NODE)
+	inOrderRec (n:detachable NODE) --Recursive help Method of inOrder
 		do
 			if n /= Void then
 				if n.getleft /= Void then
 					inOrderRec (n.getleft)
 				end
-				ausg := ausg + n.getvalue.out + " "
+				ausg := ausg + n.getvalue.out + ", "
 				if n.getright /= Void then
 					inOrderRec (n.getright)
 				end
@@ -90,12 +96,18 @@ feature
 		end
 
 
-	has(i:INTEGER) : BOOLEAN
+	has(i:INTEGER) : BOOLEAN -- Checks if there is an node with the given value. Responds if its in or not.
+	require
+		root /= void
 	do
 		Result:=hasRek (i, root)
+		ensure
+			Result = hasRek(i,root)
 	end
 
-	hasRek(i:INTEGER; r:detachable NODE) : BOOLEAN
+	hasRek(i:INTEGER; r:detachable NODE) : BOOLEAN --Runs through the BinaryTree and searches for the value.
+	require
+		r /= void
 	Local
 		found : BOOLEAN
 	do
@@ -105,18 +117,23 @@ feature
 				found:=TRUE
 			end
 			if i > r.getvalue and r.getright /= Void then
-				Result :=hasRek (i, r.getright)
+				found :=hasRek (i, r.getright)
 			else if i < r.getvalue and r.getleft /= Void then
-				Result :=hasRek (i, r.getleft)
+				found :=hasRek (i, r.getleft)
 				end
 			end
 		end
 		Result:=found
 	end
 
-	del(value : INTEGER) : BOOLEAN
+feature
+	del(value : INTEGER) : BOOLEAN  --Starts the recursive method derRec to delete the Node with value
+	require
+		has(value) = true
  	do
  		Result := delRec(root,value,Void,FALSE)
+ 		ensure
+ 			has(value) = false
  	end
 
  	delRec(k:detachable NODE; s: INTEGER; father : detachable NODE; amleftFromFather : BOOLEAN) : BOOLEAN
@@ -131,7 +148,7 @@ feature
 			done :=TRUE
 		end
 		if k /= Void and not done then
-			if s = k.getvalue then
+			if s = k.getvalue then  --Node found
 				if k.getleft = Void and k.getright = Void then
 					if father = Void then
 						root := Void
@@ -141,7 +158,7 @@ feature
 				 	Result:= TRUE
 				 	done := TRUE
 				end
-				--k hat nur rechts einen Unter-Knoten -> umbiegen
+				--Node k has one right child
 				if k.getleft = Void and k.getright /= Void and not done then
 					if father = Void then
 						root := k.getright
@@ -151,7 +168,7 @@ feature
 					Result:= TRUE
 					done := TRUE
 				end
-				--k hat nur links einen Unter-Knoten -> umbiegen
+				--Node k has one left child
 				if k.getleft /= Void and k.getright = Void and not done then
 					if father = Void then
 						root := k.getleft
@@ -180,8 +197,7 @@ feature
 					end
 				end
 			end
-
-			if s < k.getvalue and not done then
+			if s < k.getvalue and not done then --Search in left sub-tree
 				 if k.getleft = Void then
 				 	Result:= FALSE
 				 	done := TRUE
@@ -190,7 +206,7 @@ feature
 				 	done := TRUE
 				 end
 			end
-			if s > k.getvalue and not done then
+			if s > k.getvalue and not done then --Search in right sub-tree
 				 if k.getright = Void then
 				 	Result:= FALSE
 				 	done := TRUE
@@ -199,13 +215,14 @@ feature
 				 	done := TRUE
 				 end
 			end
-
 			Result:= FALSE
 			done := TRUE
 		end
 	end
 
-	hangUnderFather(father : detachable NODE; left : BOOLEAN; k : detachable NODE)
+	hangUnderFather(father : detachable NODE; left : BOOLEAN; k : detachable NODE) -- Attaches the Node under the "new" father
+	require
+		root /= void
 	do
 		if father /= Void then
 			if left then
@@ -216,7 +233,9 @@ feature
 		end
 	end
 
-	getSmallest (k : detachable NODE) :detachable NODE
+	getSmallest (k : detachable NODE) :detachable NODE --Returns the smallest Node of the BinaryTree
+	require
+		root /= void
 	Local
 		b : detachable NODE
 	do
@@ -229,6 +248,5 @@ feature
 		end
 		Result := b
 	end
-
 end
 
