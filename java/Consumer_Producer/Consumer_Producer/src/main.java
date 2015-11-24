@@ -6,19 +6,23 @@ public class main {
 		int size = 10;
 		
 		Buffer b = new Buffer(size);
-		Producer p = new Producer();
-		Consumer c = new Consumer();
+		Producer producer = new Producer();
+		Consumer consumer = new Consumer();
 		
-		Thread th = new Thread(p);
-		th.start();
+		Thread ProdTH = new Thread(producer);
+		Thread ConTH = new Thread(consumer);
+		producer.setBuffer(b);
+		consumer.setBuffer(b);
+			
+		ProdTH.start();
 		
-		
-		
-		p.produceInt(b);
-		c.consume(b);
-		
-		p.produceBool(b);
-		c.consume(b);
+		try {
+			Thread.sleep(1000);
+			ConTH.start();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
 	}
 
 }
