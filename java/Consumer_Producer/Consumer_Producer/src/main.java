@@ -14,15 +14,8 @@ public class main {
 		producer.setBuffer(b);
 		consumer.setBuffer(b);
 			
-		ProdTH.start();
-		
-		try {
-			Thread.sleep(1000);
-			ConTH.start();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}			
+		ProdTH.start();	
+		ConTH.start();		
 	}
 
 }

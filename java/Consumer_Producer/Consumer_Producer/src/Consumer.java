@@ -10,8 +10,18 @@ public class Consumer implements Runnable{
 		@Override
 		public void run() {
 			synchronized (b) {
-				for (int i = 0; i < b.getSize(); i++) {
-					System.out.println(b.gibNextElement());
+				try {
+					b.wait(); 
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				System.out.println("Consumer : "+ System.currentTimeMillis());
+				if (b.getSize()==1) {
+					System.out.println(b.gibNextElement());	
+				}else{
+					for (int i = 0; i < b.getSize(); i++) {
+						System.out.println(b.gibNextElement());
+					}
 				}
 			}
 		}
