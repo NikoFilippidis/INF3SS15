@@ -14,7 +14,8 @@ public class main {
 		producer.setBuffer(b);
 		consumer.setBuffer(b);
 			
-		ProdTH.start();	
+		
+		ProdTH.start();			
 		ConTH.start();		
 	}
 
