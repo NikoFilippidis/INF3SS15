@@ -13,7 +13,6 @@ public class Buffer<T> {
 			if (Buf[i] == null && !saved) {
 				Buf[i] = a;
 				saved=true;
-				notifyAll();
 			}
 		}
 	}

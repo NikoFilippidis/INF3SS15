@@ -10,20 +10,16 @@ public class Consumer implements Runnable{
 		@Override
 		public void run() {
 			synchronized (b) {
-				try {
-					b.wait(); 
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("Consumer : "+ System.currentTimeMillis());
-				if (b.getSize()==1) {
-					System.out.println(b.gibNextElement());	
-				}else{
-					for (int i = 0; i < b.getSize(); i++) {
-						System.out.println(b.gibNextElement());
-					}
+				do {
+					if (!b.istLeer()) {
+						System.out.println("Consuming "+b.gibNextElement());
+					}	
+				} while (!b.istLeer());
+				if (b.istLeer()) {
+					System.out.println("Buffer empty consumer waiting.");
 				}
 			}
+			
 		}
 		
 

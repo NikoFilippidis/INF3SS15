@@ -13,22 +13,30 @@ public class Producer implements Runnable{
 	}
 	
 	public void produceBool(Buffer a){
-		 b = a;
+		
 		Random r= new Random();
 		
 		for (int i = 0; i < b.getSize(); i++) {
-			b.einreihen(r.nextBoolean());
+			if (!b.istVoll()) {
+				b.einreihen(r.nextBoolean());
+			}
 		}
+		
 	}
 
 	@Override
 	public void run() {
 		
-		System.out.println("Producer : "+ System.currentTimeMillis());
 		synchronized (b) {
 			Random r= new Random();
-			for (int i = 0; i < b.getSize(); i++) {
-				b.einreihen(r.nextInt(6));
+			//for (int i = 0; i < b.getSize(); i++) {
+			//	b.einreihen(r.nextInt(6));
+			//}
+			while (!b.istVoll()) {
+				int tmp = r.nextInt(6);
+				b.einreihen(tmp);
+				System.out.println(tmp+ " erstellt");
+				
 			}
 		}
 	}
