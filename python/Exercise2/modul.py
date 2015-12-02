@@ -1,7 +1,7 @@
 '''
 Created on 01.12.2015
 
-@author: Gruppe 2
+@author: group 2
 '''
 #importblock
 import glob
@@ -23,14 +23,13 @@ def worker1():
             file = 'mails2.txt'
     
     emailFile = glob.glob(file)
-    for file_name in sorted(emailFile):
-        with open(file_name) as f:
+    for fileName in sorted(emailFile):
+        with open(fileName) as f:
             for line in f:
                 #print (threading.current_thread().name +'    ' + line.rstrip())
                 with lock:
                     #mailList.append(threading.current_thread().name +line.rstrip())
                     mailList.append(line.rstrip())
-
 
 #this block will be executed by thread c when thread a and b are finished
 #this block is looking for mails with the ending .edu and prints them out
@@ -39,6 +38,7 @@ def worker2():
        if (str(mailList[x]).endswith('.edu')):
            print(mailList[x])
     return
+
 #defines threads and will find out mails with ending .edu
 if __name__ == '__main__':
     print("Exercise2")
