@@ -1,17 +1,17 @@
 # INF3SS15
 
 1)
-Kooperative Threads arbeiten gemeinsam an einer gestellten Aufgabe. Bei Aufgabe 1 arbeiten die Producer gemeinsam mit den Consumern indem sie ihnen die Zuffalszahlen bereitstellen und die Consumer diese "weiterverarbeiten".
-Konkurrierende Threads müssen nicht notwendigerweise an eineer gemeinsamen Ausgabe arbeiten und müssen sich die bereitgestellten Betriebsmittel "teilen". Auch diesen Aspekt sieht man in Aufgabe 1, da auch hier die Threads sich Betriebsmittel teilen müssen.
+Kooperative Threads arbeiten gemeinsam an einer gestellten Aufgabe. Bei Aufgabe 1 arbeiten die Producer gemeinsam mit den Consumern indem die Producer den Buffer mit  Zuffalszahlen befüllen dieser bereit steht und die Consumer diese weiterverarbeiten indem sie ausgelesen werden.
+Konkurrierende Threads müssen nicht notwendigerweise an einer gemeinsamen Ausgabe arbeiten und müssen sich die bereitgestellten Betriebsmittel teilen. Auch diesen Aspekt sieht man in Aufgabe 1, Producer und Consumer Threads teilen sich das Speichermedium Buffer.
 
 2)
-Synchronisation bei Threads bedeutet, dass diese ihre Abläufe abhängig von anderen Threads steuern. Zum Beispiel wartet Thread A mit der Benutzung eines Betriebsmittels bis Thread B dieses nichtmehr Benötigt. Dazu werden ziwschen den Threads Signale (sogenannte Semaphoren) ausgetauscht.
-Kommunikation ziwschen Threads bedeutet, dass diese untereinander Botschaften austauschen. Hierbei beschränkt man sich aber nicht nur auf den Austausch von Signalen, sondern richtige Botschaften über sogenannte Pipes. In Java gibt es dafür zum Beispiel spezielle Stream-Klassen (PipeOutputStream/PipeInputStream).
+Synchronisation bei Threads bedeutet, dass diese ihre Abläufe abhängig von anderen Threads steuern. Zum Beispiel wartet Thread A mit der Benutzung eines Betriebsmittels bis Thread B dieses nicht mehr Benötigt. Dazu werden zwischen den Threads Signale (sogenannte Semaphoren) ausgetauscht.
+Kommunikation zwischen Threads bedeutet, dass diese untereinander Botschaften austauschen. Hierbei beschränkt man sich aber nicht nur auf den Austausch von Signalen, sondern richtige Botschaften über sogenannte Pipes. In Java gibt es dafür zum Beispiel spezielle Stream-Klassen (PipeOutputStream/PipeInputStream).
 Koordination fasst die Begriffe Synchronisation und Kommunikation zwischen Threads zusammen.
 
 3)
-Scheinbare Nebenläufigkeit ist eine Illusion. Prozesse und Threads werden klausal abhänig ausgeführt. 
-Z.b auf Architekturen mit einer CPU. Hier wechselt ein Scheduler zwischen den Threads und den Prozessen.
+Scheinbare Nebenläufigkeit ist eine Illusion. Prozesse und Threads werden klausal abhängig ausgeführt. 
+Zum Beispiel auf Architekturen mit einer CPU. Hier wechselt ein Scheduler zwischen den Threads und den Prozessen.
 Durch die schnelle Geschwindigkeit des Schedulers entsteht eine scheinbare Nebenläufigkeit. Voraussetzung für
 echte Nebenläufigkeit, ist eine Architektur, welche es ermöglicht Ereignisse Zeitlich Parallel auszuführen (Systeme mit Multi-CPU oder Multi-Core CPUs).
 
