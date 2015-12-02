@@ -1,9 +1,11 @@
 from setuptools.command.build_ext import if_dl
 from _overlapped import NULL
-
+import threading
 
 class Buffer(object):
     lst = [None] * 1
+    lock = threading.Lock()
+
 
 
     
@@ -15,19 +17,18 @@ class Buffer(object):
         saved = False
         for index, elem in enumerate(self.lst):
             if elem == None and not saved:
-                self.lst[index] = a
-                saved=True
+             self.lst[index] = a
+             saved=True
     
-    def getNextElement(self): 
+    def getNextElement(self):
         for index, elem in enumerate(self.lst):
             if elem != None:
-               tmp = self.lst[index]
-               self.delElement()
-               return tmp
-        return None
+                 tmp = self.lst[index]
+                 self.delElement()
+                 return tmp
+            return None
     
     def delElement(self):
-        
         for i in range(len(self.lst)-1):
             self.lst[i] = self.lst[i+1]
             self.lst[i+1] = None

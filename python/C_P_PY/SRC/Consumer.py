@@ -1,5 +1,5 @@
 from Buffer import Buffer
-import threading
+
 
 class Consumer(object):
     b = Buffer(1)
