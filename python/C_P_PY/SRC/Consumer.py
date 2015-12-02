@@ -15,3 +15,4 @@ class Consumer(object):
             if not self.b.isEmpty():
                 print("Consumer hallo")
                 print(self.b.getNextElement())
+        

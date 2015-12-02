@@ -13,9 +13,9 @@ p = Producer(b)
 c = Consumer(b)
 
 t = Thread(target=p.produce)
-t.setDaemon(True)
+#t.setDaemon(True)
 t1 = Thread(target=c.consume)
-t1.setDaemon(True)
+#t1.setDaemon(True)
 
 t.start()
 t1.start()
