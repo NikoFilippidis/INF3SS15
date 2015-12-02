@@ -8,7 +8,6 @@ class Producer(object):
     
     def __init__(self, a):
         self.b = a
-        #self.produce()
         
     
 
@@ -17,6 +16,9 @@ class Producer(object):
             lock.acquire()
             if not self.b.isFull():
                 self.b.addElement(randint(1, 100000))
-                print("Pruducer hallo")
             lock.release()
-    
+    '''
+    produce produces as long as the buffer is not full random numbers,
+    when this happens the lock object gets locked so only one thread at
+    a time will be able to access the buffer. After that the lock gets released.
+    '''

@@ -1,22 +1,24 @@
+#Autor: Gruppe B
 from Buffer import Buffer
 from Consumer import Consumer
 from Producer import Producer
 import sys
 from threading import Thread
-import threading
+
+#Creates buffer with size given by first param
+b = Buffer(int(sys.argv[1]))
+ 
+producer = {}
+consumer = {}
 
 
-
-b = Buffer(10)
-
-p = Producer(b)
-c = Consumer(b)
-
-t = Thread(target=p.produce)
-#t.setDaemon(True)
-t1 = Thread(target=c.consume)
-#t1.setDaemon(True)
-
-t.start()
-t1.start()
-
+#Creates an amount of consumer set by argument 2
+for i in range(int(sys.argv[2])):
+   consumer[i] = Consumer(b)
+   Thread(target=consumer[i].consume).start()
+   
+   
+#Creates an amount of producer set by argument 3
+for i in range(int(sys.argv[3])):
+   producer[i] = Producer(b)
+   Thread(target=producer[i].produce).start()

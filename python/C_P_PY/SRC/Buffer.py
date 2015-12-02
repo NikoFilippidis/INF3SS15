@@ -1,28 +1,18 @@
-from setuptools.command.build_ext import if_dl
-from _overlapped import NULL
-import threading
-
-
-
-
 class Buffer(object):
     lst = [None] * 1
-
-
-
-
     
+    #Construktor of the buffer
     def __init__(self, size):
         self.lst =[None]*size
         
-        
+     #Adds an element to buffer   
     def addElement(self, a):
         saved = False
         for index, elem in enumerate(self.lst):
             if elem == None and not saved:
              self.lst[index] = a
              saved=True
-    
+    #Returns the oldest element  :FIFO
     def getNextElement(self):
         for index, elem in enumerate(self.lst):
             if elem != None:
@@ -31,25 +21,27 @@ class Buffer(object):
                  return tmp
             return None
     
+    #Moves every element one position up
     def delElement(self):
         for i in range(len(self.lst)-1):
             self.lst[i] = self.lst[i+1]
             self.lst[i+1] = None
-            
+     
+    #Returns true when the buffer is full       
     def isFull(self):
         full=True
         for index, elem in enumerate(self.lst):
          if self.lst[index] == None:
              full = False
         return full
-    
+    #Returns true when the buffer is empty
     def isEmpty(self):
         empty=True
         for index, elem in enumerate(self.lst):
          if self.lst[index] != None:
              empty = False
         return empty
-    
+    #Returns size of buffer
     def getSize(self):
         return len(self.lst)
   
