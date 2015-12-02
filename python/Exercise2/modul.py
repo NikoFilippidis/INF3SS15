@@ -1,73 +1,53 @@
 '''
 Created on 01.12.2015
 
-@author: Zipfel
+@author: Gruppe 2
 '''
+#importblock
 import glob
 import threading
-from queue import Queue
-import time
 
+#global variables
 mailList = []
 lock = threading.Lock()
+firstWorker = True
 
+#defines operation of thread a and b. First thread in lock block reads mails from mails1.txt and writes them into mailList 
+#Secound thread in lock block reads mails from mails2.txt and writes them into mailList
 def worker1():
-    #auslesen von daten
-    # glob supports Unix style pathname extensions
-    emailFile = glob.glob('mails2.txt')
+    with lock:
+        if firstWorker:
+            file = 'mails1.txt'
+            fifrstWroker = False
+        else:
+            file = 'mails2.txt'
+    
+    emailFile = glob.glob(file)
     for file_name in sorted(emailFile):
-        print ('    ------' + file_name)
         with open(file_name) as f:
             for line in f:
                 #print (threading.current_thread().name +'    ' + line.rstrip())
                 with lock:
-                    mailList.append(threading.current_thread().name +line.rstrip())
-                time.sleep(1)
-        print()
-    return
+                    #mailList.append(threading.current_thread().name +line.rstrip())
+                    mailList.append(line.rstrip())
 
+
+#this block will be executed by thread c when thread a and b are finished
+#this block is looking for mails with the ending .edu and prints them out
 def worker2():
-    #auslesen von daten
-    # glob supports Unix style pathname extensions
-    emailFile = glob.glob('mails1.txt')
-    for file_name in sorted(emailFile):
-        print ('    ------' + file_name)
-        with open(file_name) as f:
-            for line in f:
-                #print ('    ' + line.rstrip())
-                with lock:
-                    mailList.append(line.rstrip()) 
-                   
-        print()
+    for x in range(0,len(mailList)):
+       if (str(mailList[x]).endswith('.edu')):
+           print(mailList[x])
     return
-
+#defines threads and will find out mails with ending .edu
 if __name__ == '__main__':
     print("Exercise2")
+    print()
     a = threading.Thread(target=worker1)
-    b = threading.Thread(target=worker2)
-    b.start()
+    b = threading.Thread(target=worker1)
     a.start()
+    b.start()
     a.join()
     b.join()
-    
-    for x in range(0,len(mailList)):
-       print(mailList[x])
-    
-    
-    
-    
-'''
-        # Create the queue and thread pool.
-    q = Queue()
-    for i in range(4):
-         t = threading.Thread(target=worker)
-         t.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
-         t.start()
-    
-    # stuff work items on the queue (in this case, just a number).
-    #start = time.perf_counter()
-    for item in range(20):
-        q.put(item)
-    
-    q.join()       # block until all tasks are done
-    '''
+    c = threading.Thread(target=worker2)
+    c.start()
