@@ -1,5 +1,6 @@
 from Buffer import Buffer
 from random import randint
+from Lock import lock
 
 
 class Producer(object):
@@ -13,6 +14,9 @@ class Producer(object):
 
     def produce(self):  
         while True:
+            lock.acquire()
             if not self.b.isFull():
                 self.b.addElement(randint(1, 100000))
                 print("Pruducer hallo")
+            lock.release()
+    

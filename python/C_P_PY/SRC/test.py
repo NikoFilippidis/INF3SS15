@@ -3,11 +3,11 @@ from Consumer import Consumer
 from Producer import Producer
 import sys
 from threading import Thread
+import threading
 
 
 
-
-b = Buffer(int(sys.argv[1]))
+b = Buffer(10)
 
 p = Producer(b)
 c = Consumer(b)

@@ -2,9 +2,12 @@ from setuptools.command.build_ext import if_dl
 from _overlapped import NULL
 import threading
 
+
+
+
 class Buffer(object):
     lst = [None] * 1
-    lock = threading.Lock()
+
 
 
 
