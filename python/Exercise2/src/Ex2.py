@@ -15,10 +15,11 @@ firstWorker = True
 '''defines operation of thread a and b. First thread in lock block reads mails from mails1.txt and writes them into mailList 
 second thread in lock block reads mails from mails2.txt and writes them into mailList'''
 def reader():
+    global firstWorker 
     with lock:
         if firstWorker:
             file = 'mails1.txt'
-            fifrstWroker = False
+            firstWorker = False
         else:
             file = 'mails2.txt'
     
