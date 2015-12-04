@@ -9,7 +9,7 @@ from Lock import lock
 
 
 class Producer(object):
-    b = Buffer(1)
+    b = None
     
     def __init__(self, a):
         assert not (a is None)
