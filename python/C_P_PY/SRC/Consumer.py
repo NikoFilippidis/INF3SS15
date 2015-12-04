@@ -7,7 +7,7 @@ from Buffer import Buffer
 from Lock import lock
 
 class Consumer(object):
-    b = Buffer(1)
+    b = None
     
     def __init__(self, a):
         assert not (a is None)
