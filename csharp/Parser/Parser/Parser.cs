@@ -7,15 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace Parser
 {
-    class Program
+    class Parser
     {
-        static void Main(string[] args)
-        {
-           //Reader r = new Reader(@"E:\FH RT\expressions.txt");
-           Console.WriteLine(parseExpression("((3+2)*(7-1))"));
-            
-            Console.ReadKey();
-        }
+
 
         static void readDoc() {
             
