@@ -2,50 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.IO;
-using Parser;
 
 namespace Parser
 {
     public class Reader
     {
-        static StreamReader streamReader;
-        
-
+        static StreamReader streamReader; 
+        static bool isClosed=false;
+        private static Object thisLock = new Object();
         static void Main(string[] args)
         {
-            read("C:\\Users\\Niko\\Documents\\GitRepo\\csharp\\Parser\\Parser\\expressions.txt");
-            string s = getline();
-           // Thread th = new Thread();
-           // Console.WriteLine(Parser.parseExpression(s)+ " : "+ s);
-            var p = new Parser();
-            while(true){
-                Console.WriteLine(p.parseExpression(s) + " : " + s);
-                s = getline();
-            }
-            Console.ReadKey();
-        }
-        static void read(string path)
-        {
-
-            string line;
-            int i = 0;
-            streamReader = new StreamReader(path);
-        }
-
-        static string getline()
-        {
-            string res;
-            do
+           // streamReader = new StreamReader("C:\\Users\\Niko\\Documents\\GitRepo\\csharp\\Parser\\Parser\\expressions.txt"); 
+            streamReader = new StreamReader("expressions.txt"); 
+            Thread[] t = new Thread[3];
+            for (int i = 0; i < 3; i++)
             {
-                res = streamReader.ReadLine();
-            } while (!(res != null));
-            if(res == null){
-                streamReader.Close();
-                res = "";
+               t[i] = new Thread(run);
+               t[i].Start();
             }
-            return res;
+           
+            Console.ReadKey();
+           
         }
+
+
+        static void run() {
+            lock (thisLock)
+            {
+                var p = new Parser();
+                if(!isClosed){
+                    string s = streamReader.ReadLine();
+
+                    while (s != null)
+                    {
+                        Console.WriteLine(p.parseExpression(s) + " : " + s);
+                        s = streamReader.ReadLine();
+
+                    }
+                 }
+                streamReader.Close(); 
+                isClosed = true;
+            }      
+        }
+ 
     }
 }
