@@ -10,33 +10,42 @@ namespace Parser
 {
     public class Reader
     {
-        List<string> lines = new List<string>();
+        static StreamReader streamReader;
+        
 
         static void Main(string[] args)
         {
-            Parser p = new Parser();
-            Console.WriteLine(p.parseExpression("((3+2)*(7-1))"));
-            
+            read("C:\\Users\\Niko\\Documents\\GitRepo\\csharp\\Parser\\Parser\\expressions.txt");
+            string s = getline();
+           // Thread th = new Thread();
+           // Console.WriteLine(Parser.parseExpression(s)+ " : "+ s);
+            var p = new Parser();
+            while(true){
+                Console.WriteLine(p.parseExpression(s) + " : " + s);
+                s = getline();
+            }
             Console.ReadKey();
         }
-        public Reader(string path)
+        static void read(string path)
         {
 
             string line;
             int i = 0;
-            StreamReader file = new StreamReader(path);
-            
-            while ((line = file.ReadLine()) != null)
-            {
-                lines.Add(line);
-                i++;
-            }
-            file.Close();
-        }
-        object getLines()
-        {
-            return lines;
+            streamReader = new StreamReader(path);
         }
 
+        static string getline()
+        {
+            string res;
+            do
+            {
+                res = streamReader.ReadLine();
+            } while (!(res != null));
+            if(res == null){
+                streamReader.Close();
+                res = "";
+            }
+            return res;
+        }
     }
 }

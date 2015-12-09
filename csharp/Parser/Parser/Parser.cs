@@ -7,15 +7,10 @@ using System.Text.RegularExpressions;
 
 namespace Parser
 {
-    class Parser
+    public class Parser
     {
 
-
-        static void readDoc() {
-            
-        }
-
-        static bool parseExpression(string s){
+            public bool parseExpression(string s){
             bool res = false;
             string left;
             int inBracket = 0;
@@ -64,7 +59,7 @@ namespace Parser
             return res;   
         }
 
-        static bool term(string s)
+         bool term(string s)
         {
             bool res = false;
             string left;
@@ -120,7 +115,7 @@ namespace Parser
          *  Case 3 : 
          *      String is and expression in brackets     "(" expression ")"
          */
-        static bool factor(string s)
+         bool factor(string s)
         {
             bool res = false;
             
@@ -143,7 +138,7 @@ namespace Parser
             return res;
         }
         // Checks if string equals "x" or "y" or "z"
-        static bool variable(string s)
+         bool variable(string s)
         {
             bool res = false;
             if(s.Equals("x")||s.Equals("y")||s.Equals("z")){
@@ -152,7 +147,7 @@ namespace Parser
             return res;
         }
         //Check if String is an constant = one ore more digit´s
-        static bool constant(string s) {
+         bool constant(string s) {
             bool res = true;
             foreach (char c in s)
             {
@@ -164,7 +159,7 @@ namespace Parser
             return res;
         }
         //Checks if the String is an digit 
-        static bool isDigit(string s) {
+         bool isDigit(string s) {
             
             bool res = false;
             Regex regex = new Regex("^[0-9]");
