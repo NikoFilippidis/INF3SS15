@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 using System.Text.RegularExpressions;
 
 namespace Parser
@@ -12,9 +11,9 @@ namespace Parser
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine(parseExpression("1+2"));
-    
+           //Reader r = new Reader(@"E:\FH RT\expressions.txt");
+           Console.WriteLine(parseExpression("((3+2)*(7-1))"));
+            
             Console.ReadKey();
         }
 
@@ -25,8 +24,7 @@ namespace Parser
         static bool parseExpression(string s){
             bool res = false;
             string left;
-            string right;
-            bool inBracket = false;
+            int inBracket = 0;
             bool foundBlock = false;
             int iteratorCounter = 1;
             foreach (char c in s)
@@ -40,14 +38,14 @@ namespace Parser
 
                     if (c.Equals('('))
                     {
-                        inBracket = true;
+                        inBracket++;
                     }
                     else if (c.Equals(')'))
                     {
-                        inBracket = false;
+                        inBracket--;
                     }
 
-                    if (!inBracket && c.Equals('+'))
+                    if (inBracket==0 && c.Equals('+'))
                     {
                         foundBlock = true;
                         left = s.Substring(0, s.IndexOf("+"));
@@ -57,7 +55,7 @@ namespace Parser
                             res = true;
                         }
                     }
-                    else if (!inBracket && c.Equals('-'))
+                    else if (inBracket==0 && c.Equals('-'))
                     {
                         foundBlock = true;
                         left = s.Substring(0, s.IndexOf("-"));
@@ -76,8 +74,7 @@ namespace Parser
         {
             bool res = false;
             string left;
-            string right;
-            bool inBracket = false;
+            int inBracket = 0;
             bool foundBlock = false;
             int iteratorCounter = 1;
             foreach (char c in s)
@@ -91,14 +88,14 @@ namespace Parser
                
                     if (c.Equals('('))
                     {
-                        inBracket = true;
+                        inBracket++;
                     }
                     else if (c.Equals(')'))          
                     {
-                        inBracket = false;
+                        inBracket--;
                     }
                 
-                    if (!inBracket && c.Equals('*'))  
+                    if (inBracket==0 && c.Equals('*'))  
                     {
                         foundBlock = true;
                         left = s.Substring(0, s.IndexOf("*"));
@@ -108,7 +105,7 @@ namespace Parser
                             res = true;
                         }
                     }
-                    else if (!inBracket && c.Equals('/'))
+                    else if (inBracket==0 && c.Equals('/'))
                     {
                         foundBlock = true;
                         left = s.Substring(0, s.IndexOf("/"));
