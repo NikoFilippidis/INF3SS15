@@ -12,16 +12,64 @@ namespace Parser
     {
         static void Main(string[] args)
         {
-  
-            Console.WriteLine(term("(2+3)*(1+13)"));
+
+            Console.WriteLine(parseExpression("1+2"));
     
             Console.ReadKey();
         }
 
+        static void readDoc() {
+            
+        }
+
         static bool parseExpression(string s){
-            Console.WriteLine("Expresion : " + s);
-                bool res=false;
-           return res;
+            bool res = false;
+            string left;
+            string right;
+            bool inBracket = false;
+            bool foundBlock = false;
+            int iteratorCounter = 1;
+            foreach (char c in s)
+            {
+                if (!foundBlock)
+                {
+                    if (iteratorCounter++ == s.Length) // block stands alone no "+" or "-"  + blocks remain 
+                    {
+                        res = term(s);
+                    }
+
+                    if (c.Equals('('))
+                    {
+                        inBracket = true;
+                    }
+                    else if (c.Equals(')'))
+                    {
+                        inBracket = false;
+                    }
+
+                    if (!inBracket && c.Equals('+'))
+                    {
+                        foundBlock = true;
+                        left = s.Substring(0, s.IndexOf("+"));
+                        s = s.Substring(s.IndexOf("+") + 1);
+                        if (term(left) & parseExpression(s))
+                        {
+                            res = true;
+                        }
+                    }
+                    else if (!inBracket && c.Equals('-'))
+                    {
+                        foundBlock = true;
+                        left = s.Substring(0, s.IndexOf("-"));
+                        s = s.Substring(s.IndexOf("-") + 1);
+                        if (term(left) & parseExpression(s))
+                        {
+                            res = true;
+                        }
+                    }
+                }
+            }
+            return res;   
         }
 
         static bool term(string s)
@@ -30,43 +78,48 @@ namespace Parser
             string left;
             string right;
             bool inBracket = false;
-            int iteratorCounter = 0;
+            bool foundBlock = false;
+            int iteratorCounter = 1;
             foreach (char c in s)
             {
-                
-                if (iteratorCounter++ == s.Length) // block stands alone no "*" or "/"  + blocks remain 
-                {
-                    res = factor(s);
-                }
+                if (!foundBlock)
+                { 
+                    if (iteratorCounter++ == s.Length) // block stands alone no "*" or "/"  + blocks remain 
+                    {
+                        res = factor(s);
+                    }
                
-                if (c.Equals('('))
-                {
-                    inBracket = true;
-                }
-                else if (c.Equals(')'))          
-                {
-                    inBracket = false;
-                }
+                    if (c.Equals('('))
+                    {
+                        inBracket = true;
+                    }
+                    else if (c.Equals(')'))          
+                    {
+                        inBracket = false;
+                    }
                 
-                if (!inBracket && c.Equals('*'))  
-                {
-                    left = s.Substring(0, s.IndexOf("*"));
-                    right = s.Substring(s.IndexOf("*") + 1);
-                    //Console.WriteLine(right);                 
-                    if (factor(left) & term(right))              
+                    if (!inBracket && c.Equals('*'))  
                     {
-                        res = true;
-                    }                 
-                }else if (!inBracket && c.Equals('/')){
-                    left = s.Substring(0, s.IndexOf("/"));
-                    right = s.Substring(s.IndexOf("/") + 1);
-                    if (factor(left) & term(right))
+                        foundBlock = true;
+                        left = s.Substring(0, s.IndexOf("*"));
+                        s = s.Substring(s.IndexOf("*") + 1);                            
+                        if (factor(left) & term(s))              
+                        {
+                            res = true;
+                        }
+                    }
+                    else if (!inBracket && c.Equals('/'))
                     {
-                        res = true;
+                        foundBlock = true;
+                        left = s.Substring(0, s.IndexOf("/"));
+                        s = s.Substring(s.IndexOf("/") + 1);
+                        if (factor(left) & term(s))
+                        {
+                            res = true;
+                        }
                     }
                 }
-            }
-             
+            }            
             return res;
         }
         /*   Case 1 : 
@@ -79,7 +132,14 @@ namespace Parser
         static bool factor(string s)
         {
             bool res = false;
-            if (constant(s))
+            
+            if (s.StartsWith("(") && s.EndsWith(")"))
+            {
+                string substr = s;
+                substr = substr.Substring(1, substr.Length - 2);
+                res = parseExpression(substr);
+            }
+            else if (constant(s))
             {
                 res = true;
             }
@@ -87,12 +147,7 @@ namespace Parser
             {
                 res = true;
             }
-            else if (s.StartsWith("(") && s.EndsWith(")"))
-            {
-                string substr = s;
-                substr = substr.Substring(1, substr.Length - 2);
-                res = parseExpression(substr);
-            }
+            
             
             return res;
         }
