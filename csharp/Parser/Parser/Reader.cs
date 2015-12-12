@@ -10,42 +10,55 @@ namespace Parser
     public class Reader
     {
         static StreamReader streamReader; 
-        static bool isClosed=false;
-        private static Object thisLock = new Object();
-        static void Main(string[] args)
-        {
-           // streamReader = new StreamReader("C:\\Users\\Niko\\Documents\\GitRepo\\csharp\\Parser\\Parser\\expressions.txt"); 
-            streamReader = new StreamReader("expressions.txt"); 
-            Thread[] t = new Thread[3];
-            for (int i = 0; i < 3; i++)
-            {
-               t[i] = new Thread(run);
-               t[i].Start();
-            }
-           
-            Console.ReadKey();
-           
-        }
-
-
-        static void run() {
-            lock (thisLock)
-            {
-                var p = new Parser();
-                if(!isClosed){
-                    string s = streamReader.ReadLine();
-
-                    while (s != null)
-                    {
-                        Console.WriteLine(p.parseExpression(s) + " : " + s);
-                        s = streamReader.ReadLine();
-
-                    }
-                 }
-                streamReader.Close(); 
-                isClosed = true;
-            }      
-        }
+        static Parser parser=new Parser();
  
+        static bool isClosed = false;
+        static bool done = false;
+
+        public Reader(string s ) {
+            streamReader = new StreamReader(s);
+             
+        }
+
+        //Is reading every line of the document sends it to the parser and prints the result.
+        public void parseDocument(Object stateInfo)
+        {
+            string s = "";
+            while (!done) {
+                if (!isClosed)
+                {
+                    if ((s = streamReader.ReadLine()) != null)
+                    {
+                        Console.WriteLine(parser.parseExpression(s) + " : " + s);
+                        
+                    }
+                    else
+                    {
+                        streamReader.Close();
+                        isClosed = true;
+                        done = true;
+                    }
+                }
+            }
+        }
+
+
+        static string getLine() {
+            string res = null;
+            string s;
+            if(!isClosed){
+                
+               if((s = streamReader.ReadLine()) != null){
+                   res = s;
+               }
+               else
+               {
+                   streamReader.Close();
+                   isClosed = true;
+                   done = true;
+               }
+            }
+            return res;
+        }
     }
 }

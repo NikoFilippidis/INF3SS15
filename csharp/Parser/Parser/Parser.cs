@@ -9,7 +9,7 @@ namespace Parser
 {
     public class Parser
     {
-
+             //Is parsing the expression and returns if it´s an word if the EBNF or not
             public bool parseExpression(string s){
             bool res = false;
             string left;
