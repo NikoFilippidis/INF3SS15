@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace Parser
 {
+    //Is parsing the expression and returns if it´s an element of the EBNF or not
     public class Parser
-    {
-             //Is parsing the expression and returns if it´s an word if the EBNF or not
+    {          
             public bool parseExpression(string s){
             bool res = false;
             string left;
@@ -59,6 +59,7 @@ namespace Parser
             return res;   
         }
 
+        //Checks if there is an factor concatenated with "/" or "*" and another factor.
          bool term(string s)
         {
             bool res = false;
@@ -108,6 +109,7 @@ namespace Parser
             }            
             return res;
         }
+
         /*   Case 1 : 
          *      String is a constant 
          *  Case 2 :
@@ -137,6 +139,7 @@ namespace Parser
             
             return res;
         }
+
         // Checks if string equals "x" or "y" or "z"
          bool variable(string s)
         {
@@ -146,30 +149,18 @@ namespace Parser
             }
             return res;
         }
+
         //Check if String is an constant = one ore more digit´s
          bool constant(string s) {
             bool res = true;
             foreach (char c in s)
-            {
-                if (!(isDigit(c.ToString())))
+            {               
+                if (!(Char.IsDigit(c)))           
                 {
                     res = false;
                 }
             }
             return res;
-        }
-        //Checks if the String is an digit 
-         bool isDigit(string s) {
-            
-            bool res = false;
-            Regex regex = new Regex("^[0-9]");
-            Match match = regex.Match(s);
-            if (match.Success)
-            {
-                res = true;
-            }
-            return res;
-            
-        }
+        } 
     }
 }
