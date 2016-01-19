@@ -7,9 +7,16 @@ using System.Text.RegularExpressions;
 
 namespace Parser
 {
-    //Is parsing the expression and returns if it´s an element of the EBNF or not
+    
     public class Parser
-    {          
+    {
+        //Is parsing the expression and returns if it´s an element of the EBNF or not
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="s"></param>
+            /// <returns></returns>
             public bool parseExpression(string s){
             bool res = false;
             string left;
@@ -20,8 +27,9 @@ namespace Parser
             {
                 if (!foundBlock)
                 {
-                    if (iteratorCounter++ == s.Length) // block stands alone no "+" or "-"  + blocks remain 
+                    if (iteratorCounter == s.Length) // block stands alone no "+" or "-"  + blocks remain 
                     {
+                        ++iteratorCounter;
                         res = term(s);
                     }
 
@@ -71,8 +79,9 @@ namespace Parser
             {
                 if (!foundBlock)
                 { 
-                    if (iteratorCounter++ == s.Length) // block stands alone no "*" or "/"  + blocks remain 
+                    if (iteratorCounter == s.Length) // block stands alone no "*" or "/"  + blocks remain 
                     {
+                        ++iteratorCounter;
                         res = factor(s);
                     }
                
@@ -126,6 +135,7 @@ namespace Parser
                 string substr = s;
                 substr = substr.Substring(1, substr.Length - 2);
                 res = parseExpression(substr);
+                //Kommentar HIER GEWOLLT !
             }
             else if (constant(s))
             {
@@ -142,12 +152,8 @@ namespace Parser
 
         // Checks if string equals "x" or "y" or "z"
          bool variable(string s)
-        {
-            bool res = false;
-            if(s.Equals("x")||s.Equals("y")||s.Equals("z")){
-                res = true;
-            }
-            return res;
+        {          
+            return (s.Equals("x")||s.Equals("y")||s.Equals("z"));
         }
 
         //Check if String is an constant = one ore more digit´s

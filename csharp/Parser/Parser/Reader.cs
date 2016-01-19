@@ -9,9 +9,8 @@ namespace Parser
 {
     public class Reader
     {
-        static StreamReader streamReader; 
-        static Parser parser=new Parser();
-        static Object lockThis = new System.Object();
+        static StreamReader streamReader;
+        static Parser parser = new Parser();
         static bool isClosed = false;
         static bool done = false;
 
@@ -24,8 +23,6 @@ namespace Parser
         public void parseDocument(Object stateInfo)
         {
             string s = "";
-            lock (lockThis)  
-            {
                 while (!done)
                 {
                     if (!isClosed)
@@ -41,8 +38,7 @@ namespace Parser
                             done = true;
                         }
                     }
-                }
-            }
+                }           
         }
 
         //Returns the next line of the document
