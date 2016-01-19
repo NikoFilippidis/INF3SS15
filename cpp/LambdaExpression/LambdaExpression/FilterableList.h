@@ -13,6 +13,7 @@ private:
 public:
 	
 	FilterableList(){
+		srand(time(NULL));
 		fList;
 	}
 	~FilterableList(){

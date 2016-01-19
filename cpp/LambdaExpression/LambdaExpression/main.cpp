@@ -25,15 +25,20 @@ int main(){
 	floatList.add(floatList.randomFloat());
 
 	//String-Filtering
+	cout << "Words equal or longer than 3 characters" << endl;
 	stringList.filter([](string s) -> bool {return s.length() > 2; });
-	stringList.filter([](string s) {return s.find('s'); });
-
+	cout << "Words with 's'" << endl;
+	//stringList.filter([](string s) {return s.find("s"); });
+	stringList.filter([](string s) {if (s.find('s') != string::npos) { return true; } else{ return false; } });
+	
 	//Float-Filtering
+	cout << "all Numbers >= 5" << endl;
 	floatList.filter([](float f) -> bool {return f >= 5; });
+	cout << "all negative Numbers" << endl;
 	floatList.filter([](float f) -> bool {return f < 0; });
-	//todo: rundung fixen!!!
-	floatList.filter([](float f) -> bool {f = f + 0.5; std::cout<<f<<endl; return int(f) % 2; });
+	cout << "all even Numbers" << endl;
+	floatList.filter([](float f) -> bool {if (f < 0){ f -= 0.5; } else { f += 0.5; }; return !(int(f) % 2); });
 
-	system("pause");
+	std::system("pause");
 	return 0;
 }
