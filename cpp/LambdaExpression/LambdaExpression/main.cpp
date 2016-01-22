@@ -4,11 +4,6 @@
 using namespace std;
 
 int main(){
-	//FilterableList<int>  intList;
-	//intList.add(1);
-	//intList.add(5);
-	//intList.add(3);
-	//intList.add(2);
 
 	//creating a new String-List
 	FilterableList<string> stringList;
