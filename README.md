@@ -15,11 +15,11 @@ The following EBNF which is matching mathematical snytax rules and implemented.
 Use as input is a list of possible expressions the program gives a boolean response.
 
 ## Java & Python Producer-Consumer-Problem
-Both programms take any type of numbers as input. 
-Producers and consumers are created in threads which are later on are joined to avoid problems such as Dirty-Read or Lost-Update.
+Both programs take any type of numbers as input. 
+Producers and consumers are created in threads which are later joined together to avoid problems such as Dirty-Read or Lost-Update.
 
 ## Eiffel Binary Tree 
-This binary tree can insert elements, check if an specific element is existing and delete elements recursiv.
+This binary tree can insert elements, check if a specific element is existing and delete elements recursive.
 
 ## C++ Filter using Lamda Expressions
-This programm generates random strings and filters the strings for words and float numbers. 
+This program generates random strings and filters the strings for words and float numbers. 
